@@ -1,0 +1,27 @@
+name: Release Sigeflex ERP APK
+
+on:
+  push:
+    paths:
+      - '.github/workflows/release-sigeflex-erp.yml'
+      - 'sigeflex-erp.apk'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Automatic Releases
+        uses: marvinpinto/action-automatic-releases@v1.2.1
+        with:
+          # GitHub secret token
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "ultima-versao"
+          prerelease: false
+          title: "SigeflexERP_Mobile"
+          files: |
+            sigeflex-erp.apk
+
